@@ -2,30 +2,35 @@ const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().split("\n");
 
-// for (i = 0; i < input.length; i++) {
-//   N = input[i];
+input.pop();
 
-//   A = N - 1;
-//   B = 0;
-//   while (A <= 2 * N - 1) {
-//     if (A % 2 !== 0 && A % 3 !== 0 && A % 5 !== 0 && A % 7 !== 0) {
-//       B = B + 1;
-//     }
-//     A++;
-//   }
-//   console.log(B);
-// }
+for (let i = 0; i < input.length; i++) {
+  let inputs = Number(input[i]);
 
-let N = 100;
-A = N;
-B = 0;
-while (A <= 2 * N - 1) {
-  if (A === 0) {
-    break;
+  let input2 = inputs * 2;
+
+  let isPrimeNumber = Array(input2 + 1).fill(true);
+  isPrimeNumber[0] = isPrimeNumber[1] = false;
+
+  function PrimeNumber() {
+    for (let i = 2; i <= Math.ceil(Math.sqrt(input2)); i++) {
+      if (isPrimeNumber[i]) {
+        let m = 2;
+        while (i * m <= input2) {
+          isPrimeNumber[i * m] = false;
+          m++;
+        }
+      }
+    }
+    let results = [];
+
+    for (let i = inputs + 1; i <= input2; i++) {
+      if (isPrimeNumber[i]) {
+        results.push(i);
+      }
+    }
+    console.log(results.length);
   }
-  if (A % 2 !== 0 && A % 3 !== 0 && A % 5 !== 0 && A % 7 !== 0) {
-    B = B + 1;
-  }
-  A++;
+
+  PrimeNumber();
 }
-console.log(B);
