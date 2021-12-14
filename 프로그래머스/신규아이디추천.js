@@ -21,7 +21,6 @@ function solution(new_id) {
     return edit(edit_id.concat(edit_id.charAt(edit_id.length - 1)));
   }
   let answer = edit(edit_id);
-  answer;
   return answer;
 }
 
