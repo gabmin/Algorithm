@@ -26,3 +26,53 @@ function count_number(n) {
 }
 
 console.log(solution(nums));
+
+// 두 번째 풀이 방법
+function solution(nums) {
+  // 소수 판별
+  let result = 0;
+  const cases = Combinations(nums, 3);
+  const answer = cases.map((e) => e.reduce((arr, cur) => arr + cur, 0));
+  answer.map((e) => {
+    if (e <= 1) {
+      return;
+    }
+    if (e === 2 || e === 3) {
+      result++;
+      return;
+    }
+    if (e % 2 === 0) {
+      return;
+    }
+
+    let divisor = 3;
+    let limit = Math.sqrt(e);
+
+    while (limit >= divisor) {
+      if (e % divisor === 0) {
+        return;
+      }
+      divisor += 2;
+    }
+    result++;
+    return;
+  });
+
+  return result;
+}
+
+// 조합
+function Combinations(arr, n) {
+  const res = [];
+  if (n === 1) {
+    return arr.map((v) => [v]);
+  }
+
+  arr.forEach((v, i, arr) => {
+    const rest = arr.slice(i + 1);
+    const combination = Combinations(rest, n - 1);
+    const attach = combination.map((com) => [v, ...com]);
+    res.push(...attach);
+  });
+  return res;
+}
