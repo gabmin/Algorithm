@@ -31,10 +31,13 @@ function solution(n, lost, reserve) {
 console.log(solution(n, lost, reserve));
 
 // 다른 사람 풀이 방법
-// function solution(n, lost, reserve) {
-//     return n - lost.filter(a => {
-//         const b = reserve.find(r => Math.abs(r-a) <= 1)
-//         if(!b) return true
-//         reserve = reserve.filter(r => r !== b)
-//     }).length
-// }
+function solution(n, lost, reserve) {
+  return (
+    n -
+    lost.filter((a) => {
+      const b = reserve.find((r) => Math.abs(r - a) <= 1);
+      if (!b) return true;
+      reserve = reserve.filter((r) => r !== b);
+    }).length
+  );
+}
