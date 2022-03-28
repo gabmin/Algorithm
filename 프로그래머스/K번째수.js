@@ -23,13 +23,15 @@ function solution(array, commands) {
 console.log(solution(array, commands));
 
 //다른 사람 풀이 방법
-// function solution(array, commands) {
-//     return commands.map(command => {
-//         const [sPosition, ePosition, position] = command
-//         const newArray = array
-//             .filter((value, fIndex) => fIndex >= sPosition - 1 && fIndex <= ePosition - 1)
-//             .sort((a,b) => a - b)
+function solution(array, commands) {
+  return commands.map((command) => {
+    const [sPosition, ePosition, position] = command; // 구조분해할당
+    const newArray = array
+      .filter(
+        (value, fIndex) => fIndex >= sPosition - 1 && fIndex <= ePosition - 1
+      )
+      .sort((a, b) => a - b);
 
-//         return newArray[position - 1]
-//     })
-// }
+    return newArray[position - 1];
+  });
+}
