@@ -19,14 +19,15 @@ function solution(left, right) {
 console.log(solution(left, right));
 
 // 다른 사람 풀이 방법
-// function solution(left, right) {
-//     var answer = 0;
-//     for (let i = left; i <= right; i++) {
-//         if (Number.isInteger(Math.sqrt(i))) {  // isInteger는 해당 숫자가 정수인지 판별한다. sqrt는 제곱근
-//             answer -= i;
-//         } else {
-//             answer += i;
-//         }
-//     }
-//     return answer;
-// }
+function solution(left, right) {
+  var answer = 0;
+  for (let i = left; i <= right; i++) {
+    if (Number.isInteger(Math.sqrt(i))) {
+      // isInteger는 해당 숫자가 정수인지 판별한다. sqrt는 제곱근
+      answer -= i;
+    } else {
+      answer += i;
+    }
+  }
+  return answer;
+}
